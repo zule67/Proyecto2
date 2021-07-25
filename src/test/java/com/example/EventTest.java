@@ -50,10 +50,7 @@ class EventTest {
 	void testAddAttendeeListNull() throws Exception {
 		Event evento = new Event(1L, "El evento del año",
 				EventType.BUSINESS, new EventNotificationServiceImpl());
-		
-		
-
-		
+	
 		evento.setAttendees(null);
 		assertEquals(null, evento.getAttendees());
 		Attendee person1 = new Attendee(1L , "Persona1", "");
@@ -83,19 +80,55 @@ class EventTest {
 	@Test
 	void testAddAttendees() {
 
-		event.addAttendees(null);
-		assertEquals(0, event.getAttendees().size());
+		Attendee person1 = new Attendee(1L , "Persona1", "");
+		Attendee person2 = new Attendee(2L , "Persona2", "");
+		event.addAttendee(person1);
+		assertEquals(1, event.getAttendees().size());
+		
+		event.addAttendee(person2);
+		assertEquals(2, event.getAttendees().size());
 
 	}
 	
 	@Test
-	void testRemoveAttendee() {
+	void testRemoveAttendee() throws Exception {
+		Attendee person1 = new Attendee(2L , "Persona2", "");
+		event.addAttendee(person1);
+		assertEquals(1, event.getAttendees().size());
+		event.removeAttendee(person1);
+		assertEquals(0, event.getAttendees().size());
+	}
+	
+	@Test
+	void testRemoveAttendeeNull() {
+		Attendee person1 = new Attendee(2L , "Persona2", "");
+		event.addAttendee(person1);
+		assertEquals(1, event.getAttendees().size());
+		event.removeAttendee(null);
+		assertEquals(1, event.getAttendees().size());
 		
 	}
-
+	
 	@Test
 	void testRemoveAttendees() {
-		
+		Attendee person1 = new Attendee(2L , "Persona1", "");
+		event.addAttendee(person1);
+		Attendee person2 = new Attendee(3L , "Persona2", "");
+		event.addAttendee(person2);
+		assertEquals(2, event.getAttendees().size());
+		event.removeAttendees(event.getAttendees());
+		assertEquals(0, event.getAttendees().size());
+	}
+	
+	@Test
+	void testRemoveAttendeesNull() {
+		Attendee person1 = new Attendee(2L , "Persona1", "");
+		event.addAttendee(person1);
+		Attendee person2 = new Attendee(3L , "Persona2", "");
+		event.addAttendee(person2);
+		assertEquals(2, event.getAttendees().size());
+		event.removeAttendees(null);
+		assertEquals(2, event.getAttendees().size());
 	}
 
 	@Test
@@ -105,11 +138,43 @@ class EventTest {
 
 	@Test
 	void testAddSpeaker() {
+		assertEquals(0, event.getSpeakers().size());
+		
+		Speaker person1 = new Speaker(1L , "Persona1", "");
+		Speaker person2 = new Speaker(2L , "Persona2", "");
+		event.addSpeaker(person1);
+		assertEquals(1, event.getSpeakers().size());
+		
+		event.addSpeaker(person2);
+		assertEquals(2, event.getSpeakers().size());
 		
 	}
+	@Test
+	void testAddSpeakerNull() {
+		assertEquals(0, event.getSpeakers().size());
 
+		event.addSpeaker(null);
+
+		assertEquals(0, event.getSpeakers().size());
+		
+	}
 	@Test
 	void testRemoveSpeaker() {
+		Speaker person1 = new Speaker(2L , "Persona2", "");
+		event.addSpeaker(person1);
+		assertEquals(1, event.getSpeakers().size());
+		event.removeSpeaker(person1);
+		assertEquals(0, event.getSpeakers().size());
+			
+	}
+	
+	@Test
+	void testRemoveSpeakerNull() {
+		Speaker person1 = new Speaker(2L , "Persona2", "");
+		event.addSpeaker(person1);
+		assertEquals(1, event.getSpeakers().size());
+		event.removeSpeaker(null);
+		assertEquals(1, event.getSpeakers().size());
 		
 	}
 
