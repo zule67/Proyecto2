@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
+import javax.security.auth.callback.ConfirmationCallback;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.example.Attendee;
 import com.example.Event;
 import com.example.EventType;
+import com.example.Notification;
 
 class EventNotificationServiceImplTest {
 	EventNotificationServiceImpl service ;
@@ -77,5 +80,15 @@ class EventNotificationServiceImplTest {
 		// comprobaciones
 		assertEquals(2, asistente1.getNotifications().size());
 		assertEquals(2, asistente2.getNotifications().size());
+	}
+
+	
+	@Test
+	void testConfirmAttendance() throws Exception{
+		Attendee attendee = new Attendee(5L, "pepe", "pepe@hot.com");
+		Event event = new Event(3L, "", EventType.MARKETING, service);
+		String esperado = "Dear Attendee, your subscription to the event has been confirmed successfully.";
+		service.confirmAttendance(event, attendee);
+		assertEquals(esperado , service.getMsgConfirm());
 	}
 }

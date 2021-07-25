@@ -10,7 +10,11 @@ public class EventNotificationServiceImpl implements EventNotificationService {
     private static final String MSG_ANNOUNCE = "The next big event is coming!";
     private static final String MSG_CONFIRM = "Dear Attendee, your subscription to the event has been confirmed successfully.";
 
-    @Override
+	public static String getMsgConfirm() {
+		return MSG_CONFIRM;
+	}
+
+	@Override
     public void announce(Event event) {
         if (event == null || event.getAttendees() == null || event.getAttendees().isEmpty())
             return;
