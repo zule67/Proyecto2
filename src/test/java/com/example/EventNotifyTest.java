@@ -3,6 +3,7 @@ package com.example;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.example.service.EventNotificationServiceImpl;
@@ -13,6 +14,7 @@ public class EventNotifyTest {
 	 * VERSION SIN MOCKS
 	 */
 	@Test
+	@DisplayName("Test para notificaciones(sin mock)")
 	void testNotify() {
 
 		EventNotificationServiceImpl notificationService = new EventNotificationServiceImpl();

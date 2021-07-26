@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.security.auth.callback.ConfirmationCallback;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.example.Attendee;
@@ -17,7 +18,8 @@ import com.example.Notification;
 class EventNotificationServiceImplTest {
 	EventNotificationServiceImpl service ;
 	Event event;
-
+	
+	//Así inicializa el event y el service antes de cada Test
 	@BeforeEach
 	void setUp() throws Exception {
 		service = new EventNotificationServiceImpl();
@@ -25,6 +27,7 @@ class EventNotificationServiceImplTest {
 	}
 
 	@Test
+	@DisplayName("Test para comprobar todos los nulos")
 	void testNulos() {
 
 		Attendee asistente1 = new Attendee();
@@ -48,6 +51,7 @@ class EventNotificationServiceImplTest {
 	}
 	
 	@Test
+	@DisplayName("Test para comprobar 1 asistente y 2 eventos")
 	void test1Asistente() throws Exception {
 		// un asistente
 		Attendee asistente1 = new Attendee();
@@ -60,6 +64,7 @@ class EventNotificationServiceImplTest {
 	}
 	
 	@Test
+	@DisplayName("Test para comprobar 2 asistente y 2 eventos")
 	void testMultiplesAsistentes() throws Exception {
 		// creacion de datos preparacion del entorno
 		Attendee asistente1 = new Attendee(1L, "user1", "user1");
@@ -84,6 +89,7 @@ class EventNotificationServiceImplTest {
 
 	
 	@Test
+	@DisplayName("Test para comprobar mensaje de confirmación")
 	void testConfirmAttendance() throws Exception{
 		Attendee attendee = new Attendee(5L, "pepe", "pepe@hot.com");
 		Event event = new Event(3L, "", EventType.MARKETING, service);

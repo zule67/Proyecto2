@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -24,6 +25,7 @@ public class EventMockTest {
 	Event event;
 
 	@Test
+	@DisplayName("Test para notificaciones(con mock)")
 	void testName() throws Exception {
 
 		event.notifyAssistants();
