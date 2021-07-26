@@ -65,15 +65,10 @@ class EventTest {
 	void testAddAttendeeAlreadyContains() {
 
 		assertEquals(0, event.getAttendees().size());
-
 		Attendee person1 = new Attendee(1L, "Persona1", "");
-
 		event.addAttendee(person1);
-
 		assertEquals(1, event.getAttendees().size());
-
 		event.addAttendee(person1);
-
 		assertEquals(1, event.getAttendees().size());
 
 	}
@@ -99,9 +94,18 @@ class EventTest {
 		event.setAttendees(null); 
 		event.addAttendees(attendees);
 		assertEquals(1, event.getAttendees().size());
-
 	}
+	
+	@Test
+	void testAddAttendeesListNull() throws Exception{
+		List<Attendee> attendees = null;
+		assertEquals(0, event.getAttendees().size());
 
+		event.addAttendees(attendees);
+
+		assertEquals(0, event.getAttendees().size());
+	}
+	
 	@Test
 	void testAddAttendeesAlreadyContains() {
 		List<Attendee> attendees = new ArrayList<>();
@@ -131,9 +135,18 @@ class EventTest {
 		assertEquals(1, event.getAttendees().size());
 		event.removeAttendee(null);
 		assertEquals(1, event.getAttendees().size());
-
 	}
 
+	@Test
+	void testRemoveAttendeeGetIsNull() {
+		List<Attendee> attendees = new ArrayList<>();
+		Attendee person1 = new Attendee(2L, "Persona2", "");
+		event.addAttendee(person1);
+		event.setAttendees(null);
+		event.removeAttendee(person1);
+		assertEquals(0, attendees.size());
+	}
+	
 	@Test
 	void testRemoveAttendees() {
 		Attendee person1 = new Attendee(2L, "Persona1", "");
@@ -157,12 +170,16 @@ class EventTest {
 		event.setAttendees(null);
 		event.getAttendees();
 		event.removeAttendees(null);
-		assertEquals(1, event.getAttendees().size());
 	}
-
+	
 	@Test
-	void testNotifyAssistants() {
-
+	void testRemoveAttendeesGetIsNull() {
+		List<Attendee> attendees = new ArrayList<>();
+		Attendee person1 = new Attendee(2L, "Persona2", "");
+		event.addAttendee(person1);
+		event.setAttendees(null);
+		event.removeAttendees(attendees);
+		assertEquals(0, attendees.size());
 	}
 
 	@Test
